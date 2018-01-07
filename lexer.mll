@@ -62,20 +62,30 @@ rule token = parse
     { THEN }
   | "else"
     { ELSE}
+  | "and"
+    {AND}
+  | "or"
+    {OR}
   | ";"
     { SEMICOLON }
   | "mod"
     { MOD }
   | "not"
     { NOT }
-  | "("
-    { RPAREN }
   | ")"
+    { RPAREN }
+  | "("
     { LPAREN }
-  | "["
-    { RBRACK }
   | "]"
+    { RBRACK }
+  | "["
     { LBRACK }
+  | id
+    {ID (Lexing.lexeme lexbuf)}
+  | eof
+    { EOF }
+  | _
+    { raise Error }
 
 and comment = parse
   | "(*"

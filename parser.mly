@@ -14,12 +14,18 @@ open Astfactory
 %token EOF
 (*%nonassoc SEMICOLON*)
 (*%nonassoc THEN*)
-%nonassoc ELSE
+(*%nonassoc ELSE*)
+(*%nonassoc MOD*)
+(*%right ARROW*)
+(*%nonassoc XEQ*)
 %right OR
 %right AND
-%left PLUS MINUS MODOP
-%left MULT DIV MOD
-%right ARROW EQ XEQ
+%left EQ LESS GREATER
+%left PLUS
+%left MINUS
+%left MULT DIV MODOP
+
+
 
 
 %start <Ast.expr> parse_expression
@@ -34,7 +40,7 @@ parse_expression:
 parse_phrase:
   | e = expr; SEMICOLON?; EOF
       { Expr e }
-  | d = defn; SEMICOLON; EOF
+  | d = defn; SEMICOLON?; EOF
       { d }
 
 
@@ -45,27 +51,28 @@ defn:
 expr:
   | e = simpl_expr
     { e }
-  | e1 = expr; e2 = expr
+  | e1 = expr; XEQ; e2 = expr; LPAREN; MOD; e3 = expr; RPAREN
+    { make_equiv e1 e2 e3}
+  | e1 = simpl_expr; e2 = simpl_expr
     { make_app e1 e2}
   | IF; e1 = expr; THEN; e2 = expr; ELSE; e3 = expr
     { make_if e1 e2 e3 }
   | LET; x = ID; EQ; e1 = expr; IN; e2 = expr
     { make_let x e1 e2}
-  | uop = unop; e = expr
-    { make_unop uop e}
   | e1 = expr; b = binop; e2 = expr
     { make_binop e1 b e2}
-  | FUN; x = ID; ARROW; e = expr
+  | uop = unop; e = simpl_expr
+    { make_unop uop e}
+  |  LPAREN; FUN; x = ID; ARROW; e = expr; RPAREN
     { make_fun x e}
-  | e1 = expr; MOD; e2 = expr
+  | e1 = expr; LPAREN; MOD; e2 = expr; RPAREN
     { make_equiv_class e1 e2}
-  | e1 = expr; XEQ; e2 = expr; MOD; e3 = expr
-    { make_equiv e1 e2 e3}
+
 
 
 simpl_expr:
-  | x = ID
-    {make_var x}
+  | x = ident
+    {x}
   | x = INT
     {make_int x}
   | b = BOOL
@@ -75,13 +82,17 @@ simpl_expr:
   | LPAREN; e = expr; RPAREN
     { e }
 
-unop:
+ident:
+  | x = ID
+    { make_var x }
+
+%inline unop:
   | MINUS
     { Neg }
   | NOT
     { Not }
 
-binop:
+%inline binop:
   | PLUS
     {Plus}
   | MINUS

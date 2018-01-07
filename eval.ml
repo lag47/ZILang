@@ -83,9 +83,9 @@ let rec compute_binop v1 b v2 =
     | Mod -> compute_mod v1 v2
     | And -> compute_and v1 v2
     | Or -> compute_or v1 v2
-    | Equal -> failwith "unimplemented"
-    | LessThan -> failwith "unimplemented"
-    | GreaterThan -> failwith "unimplemented"
+    | Equal -> compute_equal v1 v2
+    | LessThan -> compute_less v1 v2
+    | GreaterThan -> compute_greater v1 v2
 
 
 and list_binop l1 b l2 =
@@ -166,6 +166,8 @@ and compute_or v1 v2 =
 
 
 
+
+
 let compute_neg v =
   match v with
   | VInt(i) -> Value (VInt (-i))
@@ -178,8 +180,11 @@ let compute_not v =
   | _ -> Exception "type error with not"
 
 
-let compute_unop u e =
-  failwith "unimplemented"
+let rec compute_unop u v =
+  match u with
+  | Neg -> compute_neg v
+  | Not -> compute_not v
+
 
 let reverse vlst =
   match vlst with

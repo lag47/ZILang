@@ -1,4 +1,5 @@
 test:
+	ocamlbuild -clean
 	ocamlbuild -use-ocamlfind test.byte && ./test.byte
 
 repl:

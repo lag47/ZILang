@@ -27,7 +27,7 @@ let rec pretty_print e =
   | Bool(b) -> if b then pad "true" else pad "false"
   | Var(s) -> pad s
   | Equiv(e1,e2,e3) ->
-    (pretty_print e1) ^ (pad "x" ^ pad "eq") ^
+    (pretty_print e1) ^ (pad "xeq") ^
     (pretty_print e2) ^ (pad "mod") ^ (pretty_print e3)
   | EquivClass(e1,e2) ->
     (pretty_print e1) ^ (pad "mod") ^ (pretty_print e2)
