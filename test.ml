@@ -39,9 +39,22 @@ let parse_tests =
 
   ]
 
+let interp_tests =
+  [
+    "1", "1";
+    "let x = 1 in x", "1";
+    "if true then 1 else 2", "1";
+    "if false then 1 else 2", "2";
+    "let f = fun x -> fun y -> x + y in f 5 5", "10";
+  ]
 let make_parse_test i (a,b)  =
-  "test" ^ string_of_int i  ^ ": " ^ a >::
+  "parse test" ^ string_of_int i  ^ ": " ^ a >::
   (fun _ -> assert_equal b (parse_expr a))
 
+let make_interp_test i (a,b) =
+  "interp test" ^ string_of_int i ^ ": " ^ a >::
+  (fun _ -> assert_equal b (interp_expr a))
+
 let _ = run_test_tt_main ("suite " >:::
-    List.mapi (fun idx (a,b) -> make_parse_test idx (a,b)) parse_tests)
+  (List.mapi (fun idx (a,b) -> make_parse_test idx (a,b)) parse_tests)
+  @ (List.mapi (fun idx (a,b) -> make_interp_test idx (a,b)) interp_tests))
