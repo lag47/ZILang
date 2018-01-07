@@ -66,6 +66,12 @@ rule token = parse
     {AND}
   | "or"
     {OR}
+  | "="
+    {EQ}
+  | "<"
+    {LESS}
+  | ">"
+    {GREATER}
   | ";"
     { SEMICOLON }
   | "mod"

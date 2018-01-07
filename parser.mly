@@ -12,10 +12,12 @@ open Astfactory
 %token LESS GREATER AND OR
 %token RPAREN LPAREN RBRACK LBRACK
 %token EOF
+%nonassoc LET
+%nonassoc IN
 (*%nonassoc SEMICOLON*)
 (*%nonassoc THEN*)
 (*%nonassoc ELSE*)
-(*%nonassoc MOD*)
+%nonassoc MOD
 (*%right ARROW*)
 (*%nonassoc XEQ*)
 %right OR
@@ -51,9 +53,9 @@ defn:
 expr:
   | e = simpl_expr
     { e }
-  | e1 = expr; XEQ; e2 = expr; LPAREN; MOD; e3 = expr; RPAREN
+  | e1 = expr; XEQ; e2 = expr;  MOD; e3 = expr
     { make_equiv e1 e2 e3}
-  | e1 = simpl_expr; e2 = simpl_expr
+  | e1 = expr; e2 = simpl_expr
     { make_app e1 e2}
   | IF; e1 = expr; THEN; e2 = expr; ELSE; e3 = expr
     { make_if e1 e2 e3 }
@@ -63,9 +65,9 @@ expr:
     { make_binop e1 b e2}
   | uop = unop; e = simpl_expr
     { make_unop uop e}
-  |  LPAREN; FUN; x = ID; ARROW; e = expr; RPAREN
+  |   FUN; x = ID; ARROW; e = expr
     { make_fun x e}
-  | e1 = expr; LPAREN; MOD; e2 = expr; RPAREN
+  | e1 = expr; MOD; e2 = expr
     { make_equiv_class e1 e2}
 
 

@@ -3,20 +3,39 @@ open Eval
 open Prettyprint
 open Parse
 open Ast
+open Main
 
 let parse_tests =
   [
+    (*basics*)
     "1", Int 1;
+    "-1", Int (-1);
+    "1 mod 5", EquivClass(Int 1,Int 5);
+    "1 xeq 4 mod 5", Equiv(Int 1, Int 4, Int 5);
     "true", Bool true;
     "false", Bool false;
     "x", Var "x";
+
     "1 + 1", Binop (Int 1, Plus, Int 1);
     "1 - 1", Binop (Int 1, Minus, Int 1);
-    "1 - (-1)", Binop (Int 1, Minus, Int(-1));
-    "1 - (- (-1))", Binop ( Int 1, Minus, Unop(Neg,(Int (-1))));
+    "1 % 1", Binop (Int 1, Mod, Int 1);
+    "1 = 1", Binop(Int 1, Equal, Int 1);
+    "1 < 1", Binop(Int 1, LessThan, Int 1);
+    "1 > 1", Binop(Int 1, GreaterThan, Int 1);
+    "true and false", Binop (Bool true, And, Bool false);
+    "-(1)", Unop(Neg, Int 1);
+    "fun x -> x", Fun("x", Var "x");
+    "fun x -> (x mod 5)", Fun ("x", EquivClass(Var "x", Int 5));
+    "f x", App (Var "f", Var "x");
     "[]", List [];
     "[1]", List [Int 1];
-    "[1;2]", List [Int 1; Int 2]
+    "[1;2]", List [Int 1; Int 2];
+    "let x = 5 in x", Let("x", Int 5, Var "x");
+    "if true then 1 else 2", If(Bool true, Int 1, Int 2);
+    "(fun x -> x) 1", App (Fun("x", Var "x"), Int 1);
+    "1 - (-1)", Binop (Int 1, Minus, Int(-1));
+    "1 - (- (-1))", Binop ( Int 1, Minus, Unop(Neg,(Int (-1))));
+
 
   ]
 

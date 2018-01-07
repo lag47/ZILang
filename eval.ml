@@ -49,19 +49,19 @@ let rec string_of_value v =
   | VInt i -> string_of_int i
   | VBool b -> string_of_bool b
   | VEquiv(i1,i2,i3) ->
-    string_of_int i1 ^ "xeq"
-    ^ string_of_int i2 ^ "mod" ^ string_of_int i3
+    string_of_int i1 ^ " xeq "
+    ^ string_of_int i2 ^ " mod " ^ string_of_int i3
   | VEquivClass(i1,i2) ->
-    string_of_int i1 ^ "mod" ^ string_of_int i2
+    string_of_int i1 ^ " mod " ^ string_of_int i2
   | VList vs ->
-    let m = List.fold_left (fun acc v -> acc ^ ";" ^string_of_value v) "" vs
+    let m = List.fold_left (fun acc v -> acc ^ string_of_value v ^ ";") "" vs
     in "[" ^ m ^ "]"
   | Closure _ -> "<closure>"
   | Extern e -> "<closure>"
 
 let string_of_result r =
   match r with
-  | Exception s -> s
+  | Exception s -> "Exception:" ^ s
   | Value v -> string_of_value v
 
 let init_env =
