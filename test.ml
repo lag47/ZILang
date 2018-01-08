@@ -42,10 +42,14 @@ let parse_tests =
 let interp_tests =
   [
     "1", "1";
+    "true", "true";
+    "false", "false";
+    "1 mod 5", "1 mod 5";
     "let x = 1 in x", "1";
     "if true then 1 else 2", "1";
     "if false then 1 else 2", "2";
     "let f = fun x -> fun y -> x + y in f 5 5", "10";
+
   ]
 let make_parse_test i (a,b)  =
   "parse test" ^ string_of_int i  ^ ": " ^ a >::

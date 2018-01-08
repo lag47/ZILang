@@ -1,4 +1,5 @@
 open Ast
+open Church_numeral
 module Env = Map.Make(String)
 open Env
 type extern =
@@ -64,8 +65,7 @@ let string_of_result r =
   | Exception s -> "Exception:" ^ s
   | Value v -> string_of_value v
 
-let init_env =
-  empty
+
 
 let normalize_class i1 i2 =
   if i2 <= 0
@@ -185,6 +185,12 @@ let rec compute_unop u v =
   | Neg -> compute_neg v
   | Not -> compute_not v
 
+let compute_extern e v =
+  match e,v with
+  | Solve, VEquiv(a,b,m) -> failwith "unimplemented"
+
+  | Solve, VList vs -> failwith "unimplemented"
+  | _ -> failwith "should be unreachable"
 
 let reverse vlst =
   match vlst with
@@ -275,6 +281,7 @@ and eval_app e1 e2 env =
   match v1 with
   | Closure (s, e, envc) ->
     let envc1 = add s v2 envc in eval_expr e envc1
+  | Extern x -> failwith "unimplemented"
   | _ -> Exception "only functions can be applied"
 
 and eval_let s e1 e2 env =
@@ -313,3 +320,10 @@ let eval_phrase p env =
   match p with
   | Expr e -> (eval_expr e env),env
   | Defn(id,e) -> eval_defn id e env
+
+
+let init_env =
+  let defs = [zero; one; decode; plus; mult; pow]
+  in List.fold_left
+    (fun env def -> let (_,new_env) = eval_phrase def env in new_env)
+  empty defs
