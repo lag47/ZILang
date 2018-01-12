@@ -16,9 +16,9 @@ type value =
 
 and env = value Env.t
 
-type ('a,'b) result =
+type 'a result =
   | Value of 'a
-  | Exception of 'b
+  | Exception of string
 
 let return v =
   Value v
@@ -57,7 +57,7 @@ let rec string_of_value v =
   | VList vs ->
     let m = List.fold_left (fun acc v -> acc ^ string_of_value v ^ ";") "" vs
     in "[" ^ m ^ "]"
-  | Closure _ -> "<closure>"
+  | Closure (id,e, _) -> "<closure>"
   | Extern e -> "<closure>"
 
 let string_of_result r =
