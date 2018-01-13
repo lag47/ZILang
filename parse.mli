@@ -4,6 +4,6 @@ exception SyntaxError of string
  * by [s]*)
 val parse_expr: string -> Ast.expr
 
-(**[parse_phrase s] is teh abstract syntax tree of the phrase represented
+(**[parse_phrase s] is the abstract syntax tree of the phrase represented
  * by [s]*)
 val parse_phrase: string -> Ast.phrase

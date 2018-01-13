@@ -24,7 +24,7 @@ let print_unop =
 let rec pretty_print e =
   match e with
   | Int(x) -> x |> string_of_int |> pad
-  | Bool(b) -> if b then pad "true" else pad "false"
+  | Bool(b) -> b |> string_of_bool |> pad
   | Var(s) -> pad s
   | Equiv(e1,e2,e3) ->
     (pretty_print e1) ^ (pad "xeq") ^

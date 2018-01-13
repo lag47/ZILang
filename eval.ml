@@ -2,6 +2,7 @@ open Ast
 open Church_numeral
 module Env = Map.Make(String)
 open Env
+open Equiv
 type extern =
   | Solve
 
@@ -185,11 +186,33 @@ let rec compute_unop u v =
   | Neg -> compute_neg v
   | Not -> compute_not v
 
+let compute_equiv a b m =
+  match Equiv.solvemod a m b with
+  | Solution (k,n) -> normalize_class k n
+  | Nosol s -> Exception s
+
+let compute_chin vs =
+  let is_class = function
+    | VEquivClass _ -> true
+    | _ -> false
+  in
+  let format = function
+    | VEquivClass (a,m) ->(a,m)
+    | _ -> failwith "failed precon"
+  in
+  if List.for_all is_class vs
+  then let r = chin_rem (List.map format vs) in
+    match r with
+    | Solution (a,m) -> normalize_class a m
+    | Nosol s -> Exception s
+  else Exception "Must be a list of equivalence classes"
+
+
 let compute_extern e v =
   match e,v with
-  | Solve, VEquiv(a,b,m) -> failwith "unimplemented"
+  | Solve, VEquiv(a,b,m) -> compute_equiv a b m
 
-  | Solve, VList vs -> failwith "unimplemented"
+  | Solve, VList vs -> compute_chin vs
   | _ -> failwith "should be unreachable"
 
 let reverse vlst =
@@ -281,7 +304,7 @@ and eval_app e1 e2 env =
   match v1 with
   | Closure (s, e, envc) ->
     let envc1 = add s v2 envc in eval_expr e envc1
-  | Extern x -> failwith "unimplemented"
+  | Extern x -> compute_extern x v2
   | _ -> Exception "only functions can be applied"
 
 and eval_let s e1 e2 env =
@@ -323,7 +346,8 @@ let eval_phrase p env =
 
 
 let init_env =
-  let defs = [zero; one; decode; plus; mult; pow]
+  let defs = [zero; one; decode; plus; mult; pow;]
   in List.fold_left
     (fun env def -> let (_,new_env) = eval_phrase def env in new_env)
-  empty defs
+    empty defs
+     |> Env.add "solve" (Extern (Solve))
