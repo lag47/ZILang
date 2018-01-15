@@ -5,6 +5,8 @@ open Env
 open Equiv
 type extern =
   | Solve
+  | Gcd_fun
+  | Gcd of int
 
 type value =
   | VInt of int
@@ -213,7 +215,9 @@ let compute_extern e v =
   | Solve, VEquiv(a,b,m) -> compute_equiv a b m
 
   | Solve, VList vs -> compute_chin vs
-  | _ -> failwith "should be unreachable"
+  | Gcd_fun, VInt i -> Value (Extern (Gcd i))
+  | Gcd a, VInt b -> Value (VInt (gcd a b))
+  | _ -> Exception "type error"
 
 let reverse vlst =
   match vlst with
@@ -351,3 +355,4 @@ let init_env =
     (fun env def -> let (_,new_env) = eval_phrase def env in new_env)
     empty defs
      |> Env.add "solve" (Extern (Solve))
+     |> Env.add "gcd" (Extern Gcd_fun)

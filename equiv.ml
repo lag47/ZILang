@@ -39,6 +39,8 @@ let bez a1 b1 =
   then gcd a1 b1
   else (fun (x,y,z)->(x,z,y)) (gcd b1 a1)
 
+let gcd a b =
+  bez a b |> fun (x,_,_) -> x
 
 let solvemod a m b=
   let (g,x,_)= bez a m in
