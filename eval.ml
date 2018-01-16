@@ -198,12 +198,29 @@ let compute_chin vs =
     | VEquivClass _ -> true
     | _ -> false
   in
-  let format = function
+  let is_equiv = function
+    | VEquiv _ -> true
+    | _ -> false
+  in
+  let format_class = function
     | VEquivClass (a,m) ->(a,m)
     | _ -> failwith "failed precon"
   in
-  if List.for_all is_class vs
-  then let r = chin_rem (List.map format vs) in
+  let solve_equiv = function
+    | VEquiv (a,b,m) -> solvemod a m b
+    | _ -> failwith "failed precon"
+  in
+  if List.for_all (fun v -> is_class v || is_equiv v) vs
+  then
+    let (classes,eqs) = List.partition is_class vs in
+    let solved_eqs = List.map solve_equiv eqs in
+    if not (List.for_all (function | Solution _ -> true | _ -> false) solved_eqs)
+    then Exception "No solution"
+    else let extracted = List.map (function
+        | Solution (x,y) -> (x,y)
+        | _ -> failwith "failed precondition") solved_eqs in
+
+    let r = chin_rem ((List.map format_class classes) @ extracted ) in
     match r with
     | Solution (a,m) -> normalize_class a m
     | Nosol s -> Exception s

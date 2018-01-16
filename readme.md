@@ -5,7 +5,7 @@ Independent from that main point, the anonymous functions allow for the simulati
 ## Why?
 Mostly to learn how to work with lexers and parse generators . Also, I just finished a number theory class where this might have been somewhat helpful.
 ## Inspirations
-All of my knowledge of implementing interpretted languages come from assignments from either [CS2112](http://www.cs.cornell.edu/courses/cs2112) or [CS3110](http://www.cs.cornell.edu/courses/cs3110)
+All of my knowledge of implementing interpretted languages come from assignments from either [CS2112](http://www.cs.cornell.edu/courses/cs2112) or [CS3110](http://www.cs.cornell.edu/courses/cs3110).
 ## Acknowledgements
 [menhir](https://github.com/pippijn/menhir)
 [ocamllex](https://caml.inria.fr/pub/docs/manual-ocaml/lexyacc.html)

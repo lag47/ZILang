@@ -15,8 +15,6 @@ let map a f =
   | Solution s -> Solution (f s)
   | Nosol s -> Nosol s
 
-let _ = (map:'a t -> ('a -> 'b) -> 'b t)
-
 let join at =
   match at with
   | Solution (Solution s) -> Solution s
@@ -31,7 +29,7 @@ let bez a1 b1 =
     if b=0
     then (a,1,0)
     else
-      let (q,r0)= (a/b,a mod b) in
+      let (q,r0)= (a / b, a mod b) in
       let (g,x,y)= gcd b r0 in
       (g, y , x - q * y )
   in
@@ -40,7 +38,8 @@ let bez a1 b1 =
   else (fun (x,y,z)->(x,z,y)) (gcd b1 a1)
 
 let gcd a b =
-  bez a b |> fun (x,_,_) -> x
+  let (x,_,_) = bez a b in
+  x
 
 let solvemod a m b=
   let (g,x,_)= bez a m in
