@@ -1,0 +1,47 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="Start" href="index.html">
+<link rel="previous" href="Ast.html">
+<link rel="next" href="Church_numeral.html">
+<link rel="Up" href="index.html">
+<link title="Index of types" rel=Appendix href="index_types.html">
+<link title="Index of exceptions" rel=Appendix href="index_exceptions.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="Ast" rel="Chapter" href="Ast.html">
+<link title="Astfactory" rel="Chapter" href="Astfactory.html">
+<link title="Church_numeral" rel="Chapter" href="Church_numeral.html">
+<link title="Equiv" rel="Chapter" href="Equiv.html">
+<link title="Eval" rel="Chapter" href="Eval.html">
+<link title="Main" rel="Chapter" href="Main.html">
+<link title="Parse" rel="Chapter" href="Parse.html">
+<link title="Prettyprint" rel="Chapter" href="Prettyprint.html"><title>Astfactory</title>
+</head>
+<body>
+<div class="navbar"><a class="pre" href="Ast.html" title="Ast">Previous</a>
+&nbsp;<a class="up" href="index.html" title="Index">Up</a>
+&nbsp;<a class="post" href="Church_numeral.html" title="Church_numeral">Next</a>
+</div>
+<h1>Module <a href="type_Astfactory.html">Astfactory</a></h1>
+
+<pre><span class="keyword">module</span> Astfactory: <code class="code">sig</code> <a href="Astfactory.html">..</a> <code class="code">end</code></pre><div class="info module top">
+Construct expressions from component expressions<br>
+</div>
+<hr width="100%">
+
+<pre><span id="VALmake_int"><span class="keyword">val</span> make_int</span> : <code class="type">int -> <a href="Ast.html#TYPEexpr">Ast.expr</a></code></pre>
+<pre><span id="VALmake_var"><span class="keyword">val</span> make_var</span> : <code class="type"><a href="Ast.html#TYPEid">Ast.id</a> -> <a href="Ast.html#TYPEexpr">Ast.expr</a></code></pre>
+<pre><span id="VALmake_bool"><span class="keyword">val</span> make_bool</span> : <code class="type">bool -> <a href="Ast.html#TYPEexpr">Ast.expr</a></code></pre>
+<pre><span id="VALmake_equiv"><span class="keyword">val</span> make_equiv</span> : <code class="type"><a href="Ast.html#TYPEexpr">Ast.expr</a> -> <a href="Ast.html#TYPEexpr">Ast.expr</a> -> <a href="Ast.html#TYPEexpr">Ast.expr</a> -> <a href="Ast.html#TYPEexpr">Ast.expr</a></code></pre>
+<pre><span id="VALmake_equiv_class"><span class="keyword">val</span> make_equiv_class</span> : <code class="type"><a href="Ast.html#TYPEexpr">Ast.expr</a> -> <a href="Ast.html#TYPEexpr">Ast.expr</a> -> <a href="Ast.html#TYPEexpr">Ast.expr</a></code></pre>
+<pre><span id="VALmake_binop"><span class="keyword">val</span> make_binop</span> : <code class="type"><a href="Ast.html#TYPEexpr">Ast.expr</a> -> <a href="Ast.html#TYPEbinop">Ast.binop</a> -> <a href="Ast.html#TYPEexpr">Ast.expr</a> -> <a href="Ast.html#TYPEexpr">Ast.expr</a></code></pre>
+<pre><span id="VALmake_unop"><span class="keyword">val</span> make_unop</span> : <code class="type"><a href="Ast.html#TYPEunop">Ast.unop</a> -> <a href="Ast.html#TYPEexpr">Ast.expr</a> -> <a href="Ast.html#TYPEexpr">Ast.expr</a></code></pre>
+<pre><span id="VALmake_fun"><span class="keyword">val</span> make_fun</span> : <code class="type"><a href="Ast.html#TYPEid">Ast.id</a> -> <a href="Ast.html#TYPEexpr">Ast.expr</a> -> <a href="Ast.html#TYPEexpr">Ast.expr</a></code></pre>
+<pre><span id="VALmake_let"><span class="keyword">val</span> make_let</span> : <code class="type"><a href="Ast.html#TYPEid">Ast.id</a> -> <a href="Ast.html#TYPEexpr">Ast.expr</a> -> <a href="Ast.html#TYPEexpr">Ast.expr</a> -> <a href="Ast.html#TYPEexpr">Ast.expr</a></code></pre>
+<pre><span id="VALmake_app"><span class="keyword">val</span> make_app</span> : <code class="type"><a href="Ast.html#TYPEexpr">Ast.expr</a> -> <a href="Ast.html#TYPEexpr">Ast.expr</a> -> <a href="Ast.html#TYPEexpr">Ast.expr</a></code></pre>
+<pre><span id="VALmake_list"><span class="keyword">val</span> make_list</span> : <code class="type"><a href="Ast.html#TYPEexpr">Ast.expr</a> list -> <a href="Ast.html#TYPEexpr">Ast.expr</a></code></pre>
+<pre><span id="VALmake_if"><span class="keyword">val</span> make_if</span> : <code class="type"><a href="Ast.html#TYPEexpr">Ast.expr</a> -> <a href="Ast.html#TYPEexpr">Ast.expr</a> -> <a href="Ast.html#TYPEexpr">Ast.expr</a> -> <a href="Ast.html#TYPEexpr">Ast.expr</a></code></pre></body></html>

@@ -1,3 +1,5 @@
+(**Evaluate an abstract syntax tree for zilang*)
+
 open Ast
 
 (**[env] is an environment that maps identifiers to values*)

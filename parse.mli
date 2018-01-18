@@ -1,3 +1,5 @@
+(**Produce an abstract syntax tree from a string*)
+
 exception SyntaxError of string
 
 (**[parse_expr s] is the abstract syntax tree of the expression represented

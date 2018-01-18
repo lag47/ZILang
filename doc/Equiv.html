@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="Start" href="index.html">
+<link rel="previous" href="Church_numeral.html">
+<link rel="next" href="Eval.html">
+<link rel="Up" href="index.html">
+<link title="Index of types" rel=Appendix href="index_types.html">
+<link title="Index of exceptions" rel=Appendix href="index_exceptions.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="Ast" rel="Chapter" href="Ast.html">
+<link title="Astfactory" rel="Chapter" href="Astfactory.html">
+<link title="Church_numeral" rel="Chapter" href="Church_numeral.html">
+<link title="Equiv" rel="Chapter" href="Equiv.html">
+<link title="Eval" rel="Chapter" href="Eval.html">
+<link title="Main" rel="Chapter" href="Main.html">
+<link title="Parse" rel="Chapter" href="Parse.html">
+<link title="Prettyprint" rel="Chapter" href="Prettyprint.html"><title>Equiv</title>
+</head>
+<body>
+<div class="navbar"><a class="pre" href="Church_numeral.html" title="Church_numeral">Previous</a>
+&nbsp;<a class="up" href="index.html" title="Index">Up</a>
+&nbsp;<a class="post" href="Eval.html" title="Eval">Next</a>
+</div>
+<h1>Module <a href="type_Equiv.html">Equiv</a></h1>
+
+<pre><span class="keyword">module</span> Equiv: <code class="code">sig</code> <a href="Equiv.html">..</a> <code class="code">end</code></pre><div class="info module top">
+Mathematical functions used to implement functionality<br>
+</div>
+<hr width="100%">
+
+<pre><code><span id="TYPEt"><span class="keyword">type</span> <code class="type">'a</code> t</span> = </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTt.Solution"><span class="constructor">Solution</span></span> <span class="keyword">of</span> <code class="type">'a</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTt.Nosol"><span class="constructor">Nosol</span></span> <span class="keyword">of</span> <code class="type">string</code></code></td>
+
+</tr></table>
+
+<div class="info ">
+The type of a result of trying to solve a problem that may not have a
+ * solution<br>
+</div>
+
+
+<pre><span id="VALgcd"><span class="keyword">val</span> gcd</span> : <code class="type">int -> int -> int</code></pre><div class="info ">
+<code class="code">gcd a b</code> is the greatest common denominator of a and b<br>
+</div>
+
+<pre><span id="VALsolvemod"><span class="keyword">val</span> solvemod</span> : <code class="type">int -> int -> int -> (int * int) <a href="Equiv.html#TYPEt">t</a></code></pre><div class="info ">
+if <code class="code">solvemod a m b = Solution(c,n)</code> then
+ * if c' equivalent to c (mod n) then a * c' equivalent to b (mod m)
+ * if <code class="code">solvemod a m b = Nosol s</code> then there is no k such that
+ * a * k equivalent to b (mod m)<br>
+</div>
+
+<pre><span id="VALinvmod"><span class="keyword">val</span> invmod</span> : <code class="type">int -> int -> (int * int) <a href="Equiv.html#TYPEt">t</a></code></pre><div class="info ">
+if <code class="code">invmod a m equivalent to Solution(c,n)</code> then
+ * if c' equivalent to c (mod n) then a * c' equivalent to 1 (mod m)
+ * otherwise a does not have an inverse mod m<br>
+</div>
+
+<pre><span id="VALchin_rem"><span class="keyword">val</span> chin_rem</span> : <code class="type">(int * int) list -> (int * int) <a href="Equiv.html#TYPEt">t</a></code></pre><div class="info ">
+if <code class="code">chin_rem classes = Solution (a,m)</code> then the equivalence class of
+ * a (mod m) is the solution to the series of equivalences represented by
+ * classes
+ * otherwise the system has no solution<br>
+</div>
+</body></html>

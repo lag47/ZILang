@@ -1,0 +1,249 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="Start" href="index.html">
+<link rel="next" href="Astfactory.html">
+<link rel="Up" href="index.html">
+<link title="Index of types" rel=Appendix href="index_types.html">
+<link title="Index of exceptions" rel=Appendix href="index_exceptions.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="Ast" rel="Chapter" href="Ast.html">
+<link title="Astfactory" rel="Chapter" href="Astfactory.html">
+<link title="Church_numeral" rel="Chapter" href="Church_numeral.html">
+<link title="Equiv" rel="Chapter" href="Equiv.html">
+<link title="Eval" rel="Chapter" href="Eval.html">
+<link title="Main" rel="Chapter" href="Main.html">
+<link title="Parse" rel="Chapter" href="Parse.html">
+<link title="Prettyprint" rel="Chapter" href="Prettyprint.html"><title>Ast</title>
+</head>
+<body>
+<div class="navbar">&nbsp;<a class="up" href="index.html" title="Index">Up</a>
+&nbsp;<a class="post" href="Astfactory.html" title="Astfactory">Next</a>
+</div>
+<h1>Module <a href="type_Ast.html">Ast</a></h1>
+
+<pre><span class="keyword">module</span> Ast: <code class="code">sig</code> <a href="Ast.html">..</a> <code class="code">end</code></pre><div class="info module top">
+The abstract syntax tree for zilang<br>
+</div>
+<hr width="100%">
+
+<pre><span id="TYPEid"><span class="keyword">type</span> <code class="type"></code>id</span> = <code class="type">string</code> </pre>
+<div class="info ">
+A value id<br>
+</div>
+
+
+<pre><code><span id="TYPEbinop"><span class="keyword">type</span> <code class="type"></code>binop</span> = </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTbinop.Plus"><span class="constructor">Plus</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTbinop.Minus"><span class="constructor">Minus</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTbinop.Mult"><span class="constructor">Mult</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTbinop.Div"><span class="constructor">Div</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTbinop.Mod"><span class="constructor">Mod</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTbinop.Equal"><span class="constructor">Equal</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTbinop.LessThan"><span class="constructor">LessThan</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTbinop.GreaterThan"><span class="constructor">GreaterThan</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTbinop.And"><span class="constructor">And</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTbinop.Or"><span class="constructor">Or</span></span></code></td>
+
+</tr></table>
+
+<div class="info ">
+The type of binary operators<br>
+</div>
+
+
+<pre><code><span id="TYPEunop"><span class="keyword">type</span> <code class="type"></code>unop</span> = </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTunop.Neg"><span class="constructor">Neg</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTunop.Not"><span class="constructor">Not</span></span></code></td>
+
+</tr></table>
+
+<div class="info ">
+The type of unary operators<br>
+</div>
+
+
+<pre><code><span id="TYPEexpr"><span class="keyword">type</span> <code class="type"></code>expr</span> = </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexpr.Int"><span class="constructor">Int</span></span> <span class="keyword">of</span> <code class="type">int</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexpr.Bool"><span class="constructor">Bool</span></span> <span class="keyword">of</span> <code class="type">bool</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexpr.Var"><span class="constructor">Var</span></span> <span class="keyword">of</span> <code class="type"><a href="Ast.html#TYPEid">id</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexpr.Equiv"><span class="constructor">Equiv</span></span> <span class="keyword">of</span> <code class="type"><a href="Ast.html#TYPEexpr">expr</a> * <a href="Ast.html#TYPEexpr">expr</a> * <a href="Ast.html#TYPEexpr">expr</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexpr.EquivClass"><span class="constructor">EquivClass</span></span> <span class="keyword">of</span> <code class="type"><a href="Ast.html#TYPEexpr">expr</a> * <a href="Ast.html#TYPEexpr">expr</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexpr.Binop"><span class="constructor">Binop</span></span> <span class="keyword">of</span> <code class="type"><a href="Ast.html#TYPEexpr">expr</a> * <a href="Ast.html#TYPEbinop">binop</a> * <a href="Ast.html#TYPEexpr">expr</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexpr.Unop"><span class="constructor">Unop</span></span> <span class="keyword">of</span> <code class="type"><a href="Ast.html#TYPEunop">unop</a> * <a href="Ast.html#TYPEexpr">expr</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexpr.Fun"><span class="constructor">Fun</span></span> <span class="keyword">of</span> <code class="type"><a href="Ast.html#TYPEid">id</a> * <a href="Ast.html#TYPEexpr">expr</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexpr.App"><span class="constructor">App</span></span> <span class="keyword">of</span> <code class="type"><a href="Ast.html#TYPEexpr">expr</a> * <a href="Ast.html#TYPEexpr">expr</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexpr.Let"><span class="constructor">Let</span></span> <span class="keyword">of</span> <code class="type"><a href="Ast.html#TYPEid">id</a> * <a href="Ast.html#TYPEexpr">expr</a> * <a href="Ast.html#TYPEexpr">expr</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexpr.List"><span class="constructor">List</span></span> <span class="keyword">of</span> <code class="type"><a href="Ast.html#TYPEexpr">expr</a> list</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexpr.If"><span class="constructor">If</span></span> <span class="keyword">of</span> <code class="type"><a href="Ast.html#TYPEexpr">expr</a> * <a href="Ast.html#TYPEexpr">expr</a> * <a href="Ast.html#TYPEexpr">expr</a></code></code></td>
+
+</tr></table>
+
+<div class="info ">
+The type of an abstract syntax tree for an expression in zilang<br>
+</div>
+
+
+<pre><code><span id="TYPEphrase"><span class="keyword">type</span> <code class="type"></code>phrase</span> = </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTphrase.Expr"><span class="constructor">Expr</span></span> <span class="keyword">of</span> <code class="type"><a href="Ast.html#TYPEexpr">expr</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTphrase.Defn"><span class="constructor">Defn</span></span> <span class="keyword">of</span> <code class="type"><a href="Ast.html#TYPEid">id</a> * <a href="Ast.html#TYPEexpr">expr</a></code></code></td>
+
+</tr></table>
+
+<div class="info ">
+The type of an abstract syntax tree in zilang<br>
+</div>
+
+</body></html>

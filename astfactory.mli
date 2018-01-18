@@ -1,3 +1,5 @@
+(**Construct expressions from component expressions*)
+
 open Ast
 
 val make_int : int -> expr

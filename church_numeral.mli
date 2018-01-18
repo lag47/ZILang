@@ -1,3 +1,6 @@
+(**Represent natural numbers as untyped functions in the Church Numeral
+ * encoding*)
+
 open Ast
 
     (**phrase defining a Church numeral representing 0*)
