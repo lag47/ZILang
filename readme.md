@@ -9,3 +9,5 @@ All of my knowledge of implementing interpretted languages come from assignments
 ## Acknowledgements
 [menhir](https://github.com/pippijn/menhir)
 [ocamllex](https://caml.inria.fr/pub/docs/manual-ocaml/lexyacc.html)
+##Documentation
+[link](https://lag47.github.io/zilang/index.html)
